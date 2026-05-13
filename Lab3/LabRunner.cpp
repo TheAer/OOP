@@ -23,7 +23,11 @@ void runLab3() {
     std::cout << std::fixed << std::setprecision(10) << "\nРезультати:\n";
 
     Dichotomy_class *dyh = new Dichotomy_class();
-    if (dyh->solve(a, b, eps, result) == 0) {
+    dyh->setA(a);
+    dyh->setB(b);
+    dyh->setEps(eps);
+    
+    if (dyh->solve(result) == 0) {
         std::cout << "Метод дихотомії: x = " << result << std::endl;
     } else {
         std::cout << "Метод дихотомії: корінь не знайдено на цьому проміжку." << std::endl;
@@ -31,7 +35,10 @@ void runLab3() {
     delete dyh;
 
     Newton_class *nwt = new Newton_class();
-    if (nwt->solve(b, eps, result) == 0) {
+    nwt->setX0(b); 
+    nwt->setEps(eps);
+    
+    if (nwt->solve(result) == 0) {
         std::cout << "Метод Ньютона:   x = " << result << std::endl;
     } else {
         std::cout << "Метод Ньютона: помилка обчислення (можливо, похідна 0)." << std::endl;

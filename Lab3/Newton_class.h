@@ -3,6 +3,9 @@
 
 class Newton_class {
 private:
+    double x0;
+    double eps;
+    
     bool isNearlyZero(double val) const;
     double f(double x) const;
     double df(double x) const;
@@ -10,7 +13,14 @@ private:
 public:
     Newton_class();
     ~Newton_class();
-    int solve(double x0, double eps, double &result);
+
+    void setX0(double val);
+    void setEps(double val);
+
+    double getX0() const;
+    double getEps() const;
+
+    int solve(double &result);
 };
 
 #endif

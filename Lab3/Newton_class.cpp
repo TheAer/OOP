@@ -3,8 +3,14 @@
 #include <limits>
 #include <algorithm>
 
-Newton_class::Newton_class() {}
+Newton_class::Newton_class() : x0(0.0), eps(1e-6) {}
 Newton_class::~Newton_class() {}
+
+void Newton_class::setX0(double val) { x0 = val; }
+void Newton_class::setEps(double val) { eps = val; }
+
+double Newton_class::getX0() const { return x0; }
+double Newton_class::getEps() const { return eps; }
 
 bool Newton_class::isNearlyZero(double val) const {
     return std::fabs(val) <= std::numeric_limits<double>::epsilon() * std::max(1.0, std::fabs(val)) * 32.0;
@@ -19,7 +25,7 @@ double Newton_class::df(double x) const {
     return (f(x + h) - f(x)) / h;
 }
 
-int Newton_class::solve(double x0, double eps, double &result) {
+int Newton_class::solve(double &result) {
     double x_curr = x0;
     for (int i = 0; i < 1000; i++) {
         double fx = f(x_curr);
